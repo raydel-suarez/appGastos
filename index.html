@@ -92,7 +92,6 @@
               <th>Categoría</th>
               <th>Descripción</th>
               <th>Monto (DOP)</th>
-              <th></th>
             </tr>
           </thead>
           <tbody id="cuerpoTabla"></tbody>
@@ -106,6 +105,52 @@
     <div id="sidebarOverlay" class="sidebar-overlay"></div>
     <button id="btnNuevoGasto" class="fab" aria-label="Agregar nuevo gasto">+</button>
 
+  </div>
+
+  <!-- ── Modal: editar gasto ── -->
+  <div id="modalEditar" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>Editar gasto</h2>
+        <button id="btnCerrarModal" aria-label="Cerrar">×</button>
+      </div>
+
+      <form id="formEditar" novalidate>
+        <div class="campo">
+          <label for="editFecha">Fecha</label>
+          <input type="date" id="editFecha" required>
+        </div>
+        <div class="campo">
+          <label for="editMonto">Monto (DOP)</label>
+          <input type="number" id="editMonto" min="0.01" step="0.01" required>
+        </div>
+        <div class="campo">
+          <label for="editCategoria">Categoría</label>
+          <select id="editCategoria" required>
+            <option value="">Seleccionar...</option>
+            <option>Alimentación</option>
+            <option>Transporte</option>
+            <option>Ocio</option>
+            <option>Salud</option>
+            <option>Ropa</option>
+            <option>Servicios</option>
+            <option>Otros</option>
+          </select>
+        </div>
+        <div class="campo">
+          <label for="editDescripcion">Descripción (opcional)</label>
+          <input type="text" id="editDescripcion" placeholder="Ej. Almuerzo en restaurante">
+        </div>
+
+        <div class="modal-acciones">
+          <button type="button" id="btnEliminarDesdeModal" class="btn-peligro">Eliminar</button>
+          <div class="modal-acciones-derecha">
+            <button type="button" id="btnCancelarModal" class="btn-secundario">Cancelar</button>
+            <button type="submit" id="btnGuardarEdicion" class="btn-primario">Guardar cambios</button>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 
   <script type="module" src="js/app.js"></script>

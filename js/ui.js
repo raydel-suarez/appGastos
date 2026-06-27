@@ -33,7 +33,7 @@ export function renderTabla(gastos) {
   const color = (cat) => BADGE_COLORS[cat] || '#888';
 
   tbody.innerHTML = sorted.map(g => `
-    <tr>
+    <tr class="fila-gasto" data-id="${g.id}">
       <td>${formatFecha(g.fecha)}</td>
       <td>
         <span class="badge-categoria"
@@ -43,7 +43,6 @@ export function renderTabla(gastos) {
       </td>
       <td class="descripcion-celda">${g.descripcion || '—'}</td>
       <td class="monto-celda">${fmt(g.monto)}</td>
-      <td><button class="btn-eliminar" data-id="${g.id}">Eliminar</button></td>
     </tr>
   `).join('');
 }

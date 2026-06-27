@@ -32,6 +32,15 @@ export function deleteGasto(id) {
   saveGastos(getGastos().filter(g => g.id !== id));
 }
 
+export function updateGasto(id, campos) {
+  const gastos = getGastos();
+  const idx = gastos.findIndex(g => g.id === id);
+  if (idx !== -1) {
+    gastos[idx] = { ...gastos[idx], ...campos };
+    saveGastos(gastos);
+  }
+}
+
 export function getGastosByDateRange(start, end) {
   return getGastos().filter(g => g.fecha >= start && g.fecha <= end);
 }
