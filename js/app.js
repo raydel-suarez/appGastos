@@ -97,6 +97,22 @@ document.addEventListener('DOMContentLoaded', () => {
   validarFormulario();
   actualizarDashboard();
 
+  // Mobile bottom sheet toggle
+  const sidebar = document.querySelector('.sidebar');
+  const overlay = document.getElementById('sidebarOverlay');
+  const fab = document.getElementById('btnNuevoGasto');
+  const btnCerrar = document.getElementById('btnCerrarSidebar');
+
+  function toggleSidebar(abrir) {
+    sidebar.classList.toggle('abierto', abrir);
+    overlay.classList.toggle('visible', abrir);
+    fab.classList.toggle('activo', abrir);
+  }
+
+  fab.addEventListener('click', () => toggleSidebar(!sidebar.classList.contains('abierto')));
+  overlay.addEventListener('click', () => toggleSidebar(false));
+  btnCerrar.addEventListener('click', () => toggleSidebar(false));
+
   document.getElementById('monto').addEventListener('input', validarFormulario);
   document.getElementById('categoria').addEventListener('change', validarFormulario);
 
@@ -113,6 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setFechaHoy();
     validarFormulario();
     actualizarDashboard();
+    toggleSidebar(false);
   });
 
   document.querySelectorAll('.tab').forEach(tab => {
