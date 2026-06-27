@@ -269,9 +269,6 @@ thead th {
   border-bottom: 1px solid var(--border);
 }
 
-thead th:last-child {
-  width: 90px;
-}
 
 tbody tr {
   border-bottom: 1px solid #F1F5F9;
@@ -555,6 +552,141 @@ tbody td {
   .sidebar-overlay.visible {
     opacity: 1;
     pointer-events: auto;
+  }
+}
+
+/* ── Modal ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.modal-card {
+  background: var(--card);
+  border-radius: 14px;
+  padding: 28px;
+  width: 90%;
+  max-width: 480px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.modal-header h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+
+.modal-header button {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  line-height: 1;
+  transition: background 0.15s, color 0.15s;
+}
+
+.modal-header button:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.modal-acciones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  gap: 12px;
+}
+
+.modal-acciones-derecha {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-primario {
+  padding: 10px 20px;
+  background: var(--accent);
+  color: #0C1220;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-primario:hover {
+  background: var(--accent-dark);
+}
+
+.btn-secundario {
+  padding: 10px 20px;
+  background: var(--bg);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-secundario:hover {
+  background: var(--border);
+}
+
+.btn-peligro {
+  padding: 10px 16px;
+  background: #FEE2E2;
+  color: var(--danger);
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.btn-peligro:hover {
+  background: var(--danger);
+  color: white;
+}
+
+.fila-gasto {
+  cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .modal-overlay {
+    align-items: flex-end;
+  }
+
+  .modal-card {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+    padding: 24px 20px 36px;
   }
 }
 

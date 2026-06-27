@@ -1,8 +1,9 @@
-import { isLocalStorageAvailable, getGastos, addGasto, deleteGasto, getGastosByDateRange } from './storage.js';
+import { isLocalStorageAvailable, getGastos, addGasto, deleteGasto, updateGasto, getGastosByDateRange } from './storage.js';
 import { initCharts, updateCharts } from './charts.js';
 import { renderTabla, renderLegendas } from './ui.js';
 
 let periodoActivo = 'semanal';
+let idEditando = null;
 
 function toDateStr(date) {
   const y = date.getFullYear();
@@ -141,10 +142,54 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Abrir modal al hacer clic en una fila
   document.getElementById('cuerpoTabla').addEventListener('click', (e) => {
-    if (e.target.classList.contains('btn-eliminar')) {
-      deleteGasto(e.target.dataset.id);
+    const fila = e.target.closest('.fila-gasto');
+    if (!fila) return;
+    const gasto = getGastos().find(g => g.id === fila.dataset.id);
+    if (gasto) abrirModal(gasto);
+  });
+
+  // Cerrar modal
+  document.getElementById('btnCerrarModal').addEventListener('click', cerrarModal);
+  document.getElementById('btnCancelarModal').addEventListener('click', cerrarModal);
+  document.getElementById('modalEditar').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) cerrarModal();
+  });
+
+  // Guardar cambios
+  document.getElementById('formEditar').addEventListener('submit', (e) => {
+    e.preventDefault();
+    updateGasto(idEditando, {
+      fecha: document.getElementById('editFecha').value,
+      monto: parseFloat(document.getElementById('editMonto').value),
+      categoria: document.getElementById('editCategoria').value,
+      descripcion: document.getElementById('editDescripcion').value.trim(),
+    });
+    cerrarModal();
+    actualizarDashboard();
+  });
+
+  // Eliminar desde modal
+  document.getElementById('btnEliminarDesdeModal').addEventListener('click', () => {
+    if (confirm('¿Eliminar este gasto?')) {
+      deleteGasto(idEditando);
+      cerrarModal();
       actualizarDashboard();
     }
   });
 });
+
+function abrirModal(gasto) {
+  idEditando = gasto.id;
+  document.getElementById('editFecha').value = gasto.fecha;
+  document.getElementById('editMonto').value = gasto.monto;
+  document.getElementById('editCategoria').value = gasto.categoria;
+  document.getElementById('editDescripcion').value = gasto.descripcion || '';
+  document.getElementById('modalEditar').classList.remove('hidden');
+}
+
+function cerrarModal() {
+  idEditando = null;
+  document.getElementById('modalEditar').classList.add('hidden');
+}
