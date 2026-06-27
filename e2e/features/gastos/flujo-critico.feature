@@ -1,26 +1,24 @@
-# language: es
+Feature: Flujo crítico de gestión de gastos
+  As a user of appGastos
+  I want to register, view, delete expenses and verify totals
+  So that I can effectively manage my finances
 
-Característica: Flujo crítico de gestión de gastos
-  Como usuario de appGastos
-  Quiero registrar, ver, eliminar gastos y verificar totales
-  Para llevar un control efectivo de mis finanzas
+  Scenario: Registrar un nuevo gasto
+    Given que estoy en el dashboard de appGastos
+    When registro un gasto de "1500" en categoría "Alimentación" con descripción "Almuerzo"
+    Then el gasto aparece en la tabla con monto "1,500.00"
 
-  Escenario: Registrar un nuevo gasto
-    Dado que estoy en el dashboard de appGastos
-    Cuando registro un gasto de "1500" en categoría "Alimentación" con descripción "Almuerzo"
-    Entonces el gasto aparece en la tabla con monto "1,500.00"
+  Scenario: Ver el gasto registrado en la tabla
+    Given que existe un gasto de "1500" en categoría "Alimentación"
+    When observo la tabla de gastos
+    Then la tabla muestra al menos un gasto con categoría "Alimentación"
 
-  Escenario: Ver el gasto registrado en la tabla
-    Dado que existe un gasto de "1500" en categoría "Alimentación"
-    Cuando observo la tabla de gastos
-    Entonces la tabla muestra al menos un gasto con categoría "Alimentación"
+  Scenario: Eliminar un gasto existente
+    Given que existe un gasto de "1500" en categoría "Alimentación"
+    When elimino el gasto de la tabla
+    Then la tabla no muestra el gasto eliminado
 
-  Escenario: Eliminar un gasto existente
-    Dado que existe un gasto de "1500" en categoría "Alimentación"
-    Cuando elimino el gasto de la tabla
-    Entonces la tabla no muestra el gasto eliminado
-
-  Escenario: Verificar totales en el dashboard
-    Dado que existe un gasto de "1500" en categoría "Alimentación"
-    Cuando observo el panel de totales
-    Entonces el total del período refleja el monto "1500"
+  Scenario: Verificar totales en el dashboard
+    Given que existe un gasto de "1500" en categoría "Alimentación"
+    When observo el panel de totales
+    Then el total del período refleja el monto "1500"
