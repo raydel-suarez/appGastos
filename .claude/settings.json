@@ -1,0 +1,39 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/raydelsuarez/Desktop/proyectos/appGastos/.claude/hooks/create-feature-branch.sh",
+            "timeout": 30,
+            "statusMessage": "Verificando rama de trabajo (gitFlow)..."
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash /Users/raydelsuarez/Desktop/proyectos/appGastos/.claude/hooks/run-e2e-tests.sh",
+            "asyncRewake": true,
+            "timeout": 120,
+            "statusMessage": "Ejecutando pruebas E2E...",
+            "rewakeMessage": "Resultado de pruebas E2E automáticas:",
+            "rewakeSummary": "Pruebas E2E completadas"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git *)",
+      "Bash(gh *)"
+    ]
+  }
+}
