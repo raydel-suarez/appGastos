@@ -85,17 +85,19 @@
 
       <div class="tabla-container">
         <h3>Gastos registrados</h3>
-        <table id="tablaGastos">
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Categoría</th>
-              <th>Descripción</th>
-              <th>Monto (DOP)</th>
-            </tr>
-          </thead>
-          <tbody id="cuerpoTabla"></tbody>
-        </table>
+        <div class="tabla-scroll">
+          <table id="tablaGastos">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Categoría</th>
+                <th>Descripción</th>
+                <th>Monto (DOP)</th>
+              </tr>
+            </thead>
+            <tbody id="cuerpoTabla"></tbody>
+          </table>
+        </div>
         <p id="mensajeVacio" class="mensaje-vacio hidden">Aún no hay gastos registrados.</p>
       </div>
 
