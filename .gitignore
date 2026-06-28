@@ -7,8 +7,14 @@ e2e/node_modules/
 
 # Suite E2E — artefactos generados
 e2e/allure-results/
+e2e/allure-report/
+e2e/test-results/
 e2e/.features-gen/
 e2e/dist/
+
+# Claude Code — artefactos efímeros
+.claude/.e2e_last_run
+.playwright-mcp/
 
 # Variables de entorno
 .env
