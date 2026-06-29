@@ -21,10 +21,10 @@
             "type": "command",
             "command": "bash /Users/raydelsuarez/Desktop/proyectos/appGastos/.claude/hooks/run-e2e-tests.sh",
             "asyncRewake": true,
-            "timeout": 120,
-            "statusMessage": "Ejecutando pruebas E2E...",
-            "rewakeMessage": "Resultado de pruebas E2E automáticas:",
-            "rewakeSummary": "Pruebas E2E completadas"
+            "timeout": 180,
+            "statusMessage": "Ejecutando pruebas unitarias → E2E...",
+            "rewakeMessage": "Resultado de pruebas automáticas (unit → E2E):",
+            "rewakeSummary": "Pruebas unitarias y E2E completadas"
           }
         ]
       }
