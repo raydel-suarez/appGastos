@@ -6,7 +6,7 @@
     "test": "bddgen && playwright test",
     "test:ui": "bddgen && playwright test --ui",
     "generate": "bddgen",
-    "report": "allure open allure-results"
+    "report": "allure serve allure-results"
   },
   "devDependencies": {
     "@playwright/test": "^1.45.0",
