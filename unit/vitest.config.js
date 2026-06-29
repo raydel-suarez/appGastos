@@ -5,5 +5,9 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     include: ['tests/**/*.test.js'],
+    reporters: ['verbose', 'html'],
+    outputFile: {
+      html: './report/index.html',
+    },
   },
 });
