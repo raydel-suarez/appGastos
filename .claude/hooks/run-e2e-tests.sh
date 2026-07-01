@@ -59,6 +59,10 @@ if [[ "$HTTP_STATUS" != "200" ]]; then
 fi
 
 cd "$E2E_DIR"
+
+# Limpiar resultados y reporte previos para que Allure no mezcle evidencia de corridas anteriores
+rm -rf allure-results allure-report
+
 TEST_OUTPUT=$(npm test 2>&1)
 TEST_EXIT=$?
 
