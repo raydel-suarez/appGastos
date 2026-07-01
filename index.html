@@ -17,6 +17,30 @@
 </head>
 <body>
 
+  <div id="splash">
+    <img src="icons/icon-512.png" alt="appGastos">
+  </div>
+  <script>
+    (function () {
+      const esStandalone = window.matchMedia('(display-mode: standalone)').matches
+        || window.navigator.standalone === true;
+
+      if (!esStandalone) return;
+
+      document.documentElement.classList.add('is-standalone');
+
+      window.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () {
+          const splash = document.getElementById('splash');
+          splash.classList.add('splash--hide');
+          splash.addEventListener('transitionend', function () {
+            splash.remove();
+          }, { once: true });
+        }, 1000);
+      });
+    })();
+  </script>
+
   <div id="errorStorage" class="hidden">
     El navegador no permite acceder a localStorage. Los datos no se guardarán.
   </div>
