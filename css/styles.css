@@ -693,10 +693,38 @@ tbody td {
   }
 }
 
+/* ── Splash screen ── */
+#splash {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  background: var(--sidebar-bg);
+  opacity: 1;
+  transition: opacity 400ms ease;
+}
+
+html.is-standalone #splash {
+  display: flex;
+}
+
+#splash img {
+  width: 180px;
+  max-width: 45vw;
+  height: auto;
+}
+
+#splash.splash--hide {
+  opacity: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .sidebar,
   .fab,
-  .sidebar-overlay {
+  .sidebar-overlay,
+  #splash {
     transition: none;
   }
 }
